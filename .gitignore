@@ -1,10 +1,13 @@
 .idea
 
+package-lock.json
+
 # dependencies
 /node_modules
 
 # production build
 /build
+/dist
 
 # testing
 /coverage
