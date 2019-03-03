@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/server/bundle.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon src/server.js"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
@@ -17,13 +17,22 @@
     "apollo-link-error": "^1.0.7",
     "apollo-link-http": "^1.5.3",
     "express": "^4.16.2",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "multer": "^1.3.1",
     "react": "^16.0.0",
     "react-apollo": "^2.1.0-rc.4",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2",
+    "react-router-dom": "^4.2.2"
   },
-  "keywords": ["blog", "programming", "algorithms", "belkovich"],
+  "keywords": [
+    "blog",
+    "programming",
+    "algorithms",
+    "belkovich"
+  ],
   "author": "Eugene Belkovich",
   "license": "MIT"
 }
