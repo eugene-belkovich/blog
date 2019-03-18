@@ -8,10 +8,10 @@ import { ApolloLink } from 'apollo-link';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
 import 'babel-polyfill';
-import './frontend/style/index.css';
+import './style/index.css';
 
 import { errorLink, queryOrMutationLink, requestLink } from './links';
-import App from './frontend/App';
+import Layout from './routes/Layout';
 
 const links = [
   errorLink,
@@ -31,7 +31,7 @@ const client = new ApolloClient({
 hydrate(
   <ApolloProvider client={client}>
     <BrowserRouter>
-      <App />
+      <Layout />
     </BrowserRouter>
   </ApolloProvider>,
   document.getElementById('content')

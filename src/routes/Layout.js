@@ -11,17 +11,15 @@ const Layout = () => (
     <nav>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/">Home new</Link>
         </li>
         <li>
-          <Link to="/another">Another page</Link>
+          <Link to="/another">Another page new</Link>
         </li>
       </ul>
     </nav>
     <Switch>
-      {routes.map(route => (
-        <Route key={route.name} {...route} />
-      ))}
+      {routes.map(route => <Route key={route.name} {...route} />)}
     </Switch>
   </div>
 );

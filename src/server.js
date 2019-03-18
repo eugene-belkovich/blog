@@ -1,12 +1,7 @@
 import Express from 'express';
 import path from 'path';
 import proxy from 'http-proxy-middleware';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import multer from 'multer';
-
-const upload = multer();
+import graphqlHTTP from 'express-graphql';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -21,11 +16,10 @@ import fetch from 'node-fetch';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
 
 import { errorLink, queryOrMutationLink } from './links';
-import Html from './frontend/routes/Html';
-import Layout from './frontend/routes/Layout';
+import Html from './routes/Html';
+import Layout from './routes/Layout';
 
-// todo implement mongo
-// const connectMongo = require('./mongo-connector');
+import schema from './schema';
 
 let PORT = 3000;
 if (process.env.PORT) {
@@ -38,7 +32,14 @@ const app = new Express();
 
 const apiProxy = proxy({ target: API_HOST, changeOrigin: true });
 
-app.use('/graphql', apiProxy);
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema: schema,
+    graphiql: true,
+  })
+);
+// app.use('/graphql', apiProxy);
 app.use('/graphiql', apiProxy);
 app.use('/login', apiProxy);
 app.use('/logout', apiProxy);
@@ -99,18 +100,6 @@ app.use((req, res) => {
       );
     });
 });
-
-app.use(Express.static('public'));
-app.use(cors());
-app.use(cookieParser());
-app.use(upload.array());
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-app.use(require('./server/controller'));
 
 app.listen(PORT, () =>
   console.log(

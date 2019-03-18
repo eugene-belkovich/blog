@@ -6,7 +6,7 @@ import React from 'react';
 
 const MainPage = () => (
   <div>
-    <h3>MainPage</h3>
+    <h3>MainPage new</h3>
   </div>
 );
 
