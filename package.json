@@ -1,5 +1,5 @@
 {
-  "name": "ssr-data-render",
+  "name": "blog",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -91,6 +91,6 @@
     "trescomas-react-ui": "^1.0.2"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Eugene Belkovich",
+  "license": "MIT"
 }

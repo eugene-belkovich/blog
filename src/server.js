@@ -11,7 +11,6 @@ import ApolloClient from 'apollo-client';
 import { ApolloProvider, renderToStringWithData } from 'react-apollo';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
 import fetch from 'node-fetch';
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries';
 
@@ -39,7 +38,7 @@ app.use(
     graphiql: true,
   })
 );
-// app.use('/graphql', apiProxy);
+app.use('/graphql', apiProxy);
 app.use('/graphiql', apiProxy);
 app.use('/login', apiProxy);
 app.use('/logout', apiProxy);

@@ -1,5 +1,3 @@
-// ./routes/Layout.js
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Route, Switch } from 'react-router';
@@ -11,10 +9,10 @@ const Layout = () => (
     <nav>
       <ul>
         <li>
-          <Link to="/">Home new</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/another">Another page new</Link>
+          <Link to="/another">Another page</Link>
         </li>
       </ul>
     </nav>

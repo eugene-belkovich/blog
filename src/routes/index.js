@@ -1,5 +1,3 @@
-// ./routes/index.js
-
 import MainPage from './MainPage';
 import AnotherPage from './AnotherPage';
 

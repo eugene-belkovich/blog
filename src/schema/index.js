@@ -12,5 +12,6 @@ import { Query } from './Query/resolver';
 // Generate the schema object from your types definition.
 module.exports = makeExecutableSchema({
   typeDefs: [QuerySchema, MutationsSchema, UserSchema],
+  // resolvers: { ...Query, ...Mutation, ...User },
   resolvers: { ...Query, ...User },
 });

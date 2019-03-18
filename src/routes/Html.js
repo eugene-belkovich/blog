@@ -9,7 +9,7 @@ const Html = ({ content, client: { cache } }) => (
     </head>
     <body>
       <div id="content" dangerouslySetInnerHTML={{ __html: content }} />
-      <div id="footer">Footer new </div>
+      <div id="footer">Footer</div>
       <script
         charSet="UTF-8"
         dangerouslySetInnerHTML={{
