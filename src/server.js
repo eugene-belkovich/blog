@@ -1,7 +1,9 @@
 import Express from 'express';
-import path from 'path';
-import proxy from 'http-proxy-middleware';
-import graphqlHTTP from 'express-graphql';
+
+import expressGraphQL from 'express-graphql';
+import mongoose from 'mongoose';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 import React from 'react';
 import ReactDOM from 'react-dom/server';
@@ -18,50 +20,41 @@ import { errorLink, queryOrMutationLink } from './links';
 import Html from './routes/Html';
 import Layout from './routes/Layout';
 
-import schema from './schema';
+import schema from './graphql/';
 
-let PORT = 3000;
+let PORT = 8080;
 if (process.env.PORT) {
   PORT = parseInt(process.env.PORT, 10);
 }
 
-const API_HOST = 'http://localhost:3010';
-
 const app = new Express();
-
-const apiProxy = proxy({ target: API_HOST, changeOrigin: true });
+const db = process.env.MONGODB_URI;
+mongoose
+  .connect('mongodb://localhost:27017/blog', {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+  })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.log(err));
 
 app.use(
   '/graphql',
-  graphqlHTTP({
-    schema: schema,
+  cors(),
+  bodyParser.json(),
+  expressGraphQL({
+    schema,
     graphiql: true,
   })
 );
-app.use('/graphql', apiProxy);
-app.use('/graphiql', apiProxy);
-app.use('/login', apiProxy);
-app.use('/logout', apiProxy);
 
-if (process.env.NODE_ENV === 'production') {
-  // In production we want to serve our JS from a file on the filesystem.
-  app.use('/static', Express.static(path.join(process.cwd(), 'build/client')));
-} else {
-  // Otherwise we want to proxy the webpack development server.
-  app.use(
-    '/static',
-    proxy({ target: 'http://localhost:3020', pathRewrite: { '^/static': '' } })
-  );
-}
 const links = [
   errorLink,
   queryOrMutationLink({
     fetch,
-    uri: `${API_HOST}/graphql`,
+    uri: 'http://localhost:8080/graphql',
   }),
 ];
 
-// support APQ in production
 if (process.env.NODE_ENV === 'production') {
   links.unshift(createPersistedQueryLink());
 }

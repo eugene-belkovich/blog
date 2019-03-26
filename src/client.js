@@ -24,7 +24,6 @@ const client = new ApolloClient({
   ssrForceFetchDelay: 100,
   link: ApolloLink.from(links),
   connectToDevTools: true,
-  // here we're initializing the cache with the data from the server's cache
   cache: new InMemoryCache().restore(window.__APOLLO_STATE__),
 });
 

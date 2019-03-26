@@ -14,7 +14,7 @@ module.exports = {
     publicPath: '/',
   },
   externals: (context, request, callback) => {
-    // Externalize all npm modules.
+    //todo  externalize all npm modules.
     if (/^[a-z0-9-][a-z0-9-./]+$/.test(request)) {
       return callback(null, `commonjs ${request}`);
     }

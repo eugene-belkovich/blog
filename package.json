@@ -7,7 +7,7 @@
     "start": "node build/server/bundle.js",
     "build": "rm -rf build && NODE_ENV=production webpack --progress --config webpack.config.server.js && NODE_ENV=production webpack --progress --config webpack.config.client.js",
     "postinstall": "npm run build",
-    "dev": "NODE_ENV=development concurrently -c blue,cyan,magenta \"webpack --watch --config webpack.config.server.js\" \"sleep 3 && nodemon --watch build/server build/server/bundle.js\" \"webpack-dev-server -d --hot --inline --no-info --port 3020 --config webpack.config.client.js\"",
+    "dev": "NODE_ENV=development concurrently -c blue,cyan,magenta \"webpack --watch --config webpack.config.server.js\" \"sleep 3 && nodemon --watch build/server build/server/bundle.js\" \"webpack-dev-server -d --hot --inline --no-info --port 3000 --config webpack.config.client.js\"",
     "lint": "eslint src",
     "lint:fix": "eslint --fix src",
     "test": "npm run lint",
@@ -51,7 +51,7 @@
     "style-loader": "^0.19.0",
     "webpack": "^3.8.1",
     "webpack-cli": "^2.0.4",
-    "webpack-dev-server": "^3.1.11"
+    "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.0.0",
@@ -63,7 +63,9 @@
     "apollo-link-ws": "^1.0.7",
     "apollo-utilities": "^1.0.1",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
     "classnames": "^2.2.5",
+    "cors": "^2.8.5",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "express-graphql": "^0.7.1",
@@ -73,8 +75,9 @@
     "http-proxy-middleware": "^0.17.4",
     "immutability-helper": "^2.4.0",
     "jsonwebtoken": "^8.2.1",
+    "merge-graphql-schemas": "^1.5.8",
     "moment": "^2.22.0",
-    "mongodb": "^3.0.6",
+    "mongoose": "^5.4.19",
     "node-emoji": "^1.8.1",
     "node-fetch": "^1.7.3",
     "persistgraphql": "^0.3.11",
